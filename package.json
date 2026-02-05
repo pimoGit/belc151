@@ -1,14 +1,16 @@
 {
-  "name": "belc151",
-  "version": "1.0.0",
-  "description": "prima app di BE completa per classe 151",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "classe 151",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+    "name": "belc151",
+    "version": "1.0.0",
+    "description": "prima app di BE completa per classe 151",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app.js",
+        "watch": "node --watch app.js"
+    },
+    "author": "classe 151",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.2.1"
+    }
 }
