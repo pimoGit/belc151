@@ -10,6 +10,12 @@ app.get('/', (req, res) => {
     res.send("<h1>Rotta di home della nostra App della pizzeria</h1>")
 })
 
+// totta es. di dettaglio
+app.get('/products/:id', function (req, res) {
+    console.log(req.params.id)
+    res.send(`Hai cercato il prodotto con id  ${req.params.id}`)
+})
+
 // rotta menù APP
 app.get('/menu', (req, res) => {
 
