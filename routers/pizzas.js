@@ -3,10 +3,21 @@ const express = require('express')
 // creiamo un istanza dell'oggetto rotte di Express
 const router = express.Router();
 
+// importo i dati delle pizze
+const menuPizze = require('./../data/menu');
+
 // Rotte di CRUD
 // index
 router.get('/', function (req, res) {
-    res.send('Lista delle pizze');
+
+    // creo un nuovo oggetto con le prop che mi servono
+    const oggettoMenu = {
+        numeroPizze: menuPizze.length,
+        listaPizze: menuPizze
+    };
+
+    // restituisco in risposta ql'oggetto creato
+    res.json(oggettoMenu);
 });
 
 // show
