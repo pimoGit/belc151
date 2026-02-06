@@ -10,48 +10,38 @@ app.get('/', (req, res) => {
     res.send("<h1>Rotta di home della nostra App della pizzeria</h1>")
 })
 
-// totta es. di dettaglio
-app.get('/products/:id', function (req, res) {
-    console.log(req.params.id)
-    res.send(`Hai cercato il prodotto con id  ${req.params.id}`)
-})
+// Rotte di CRUD
+// index
+app.get('/pizzas', function (req, res) {
+    res.send('Lista delle pizze');
+});
 
-// rotta menù APP
-app.get('/menu', (req, res) => {
+// show
+app.get('/pizzas/:id', function (req, res) {
+    res.send('Dettagli della pizza ' + req.params.id);
+});
 
-    // settiamo dati del json da ritornare a questa rotta (menù pizze)
-    const menu = [
-        {
-            id: 1,
-            name: "Margherita",
-            image: "imgs/pizze/margherita.webp",
-            ingredients: ["pomodoro", "mozzarella"],
-        }, {
-            id: 2,
-            name: "Marinara",
-            image: "imgs/pizze/marinara.jpeg",
-            ingredients: ["pomodoro", "aglio", "origano"],
-        }, {
-            id: 3,
-            name: "Diavola",
-            image: "imgs/pizze/diavola.jpeg",
-            ingredients: ["pomodoro", "mozzarella", "salame piccante"],
-        }, {
-            id: 4,
-            name: "Bufalina",
-            image: "imgs/pizze/bufalina.jpeg",
-            ingredients: ["pomodoro", "mozzarella di bufala"],
-        }, {
-            id: 5,
-            name: "4 formaggi",
-            image: "imgs/pizze/4_formaggi.jpeg",
-            ingredients: ["pomodoro", "mozzarella", "gorgonzola", "parmigiano", "ricotta"],
-        }
-    ];
+// store
+app.post('/pizzas', function (req, res) {
+    res.send('Creazione nuova pizza');
+});
 
-    // ritorniamo res con json array di oggetti pizze
-    res.json(menu);
-})
+// update
+app.put('/pizzas/:id', function (req, res) {
+    res.send('Modifica integrale della pizza ' + req.params.id);
+});
+
+// modify
+app.patch('/pizzas/:id', function (req, res) {
+    res.send('Modifica parziale della pizza ' + req.params.id);
+});
+
+// destroy
+app.delete('/pizzas/:id', function (req, res) {
+    res.send('Eliminazione della pizza ' + req.params.id);
+});
+
+
 
 
 
