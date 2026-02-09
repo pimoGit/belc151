@@ -32,7 +32,29 @@ router.get('/', function (req, res) {
 
 // show
 router.get('/:id', function (req, res) {
-    res.send('Dettagli della pizza ' + req.params.id);
+
+    // recuperiamo l'id dall' URL e trasformiamolo in numero
+    const idNum = parseInt(req.params.id)
+
+    // cerchiamo il pizza tramite id
+    const pizza = menuPizze.find(pizza => pizza.id === idNum);
+
+    // condizione di check se trovato item
+    if (!pizza) {
+
+        // forziamo lo stato di risposta a 404
+        res.status(404);
+
+        // rispondiamo con oggetto di errore
+        return res.json({
+            errror: "Not Found",
+            message: "Pizza non trovata"
+        })
+    }
+
+
+    // Restituiamolo sotto forma di JSON   
+    res.json(pizza);
 });
 
 // store
