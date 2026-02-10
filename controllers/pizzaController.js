@@ -48,7 +48,7 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    const newId = menuPizze[menuPizze.length - 1].id + 1;
+    const newId = Date.now();
 
     // Creiamo un nuovo oggetto pizza
     const newPizza = {
