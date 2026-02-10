@@ -55,7 +55,8 @@ function store(req, res) {
         id: newId,
         name: req.body.name,
         image: req.body.image,
-        ingredients: req.body.ingredients
+        ingredients: req.body.ingredients,
+
     }
 
     // Aggiungiamo la nuova pizza al menu
@@ -99,8 +100,35 @@ function update(req, res) {
     res.json(pizza);
 }
 
+// potenziale modifica parziale
 function modify(req, res) {
-    res.send('Modifica parziale della pizza ' + req.params.id);
+    // recuperiamo l'id dall' URL e trasformiamolo in numero
+    const id = parseInt(req.params.id)
+
+    // cerchiamo il pizza tramite id
+    const pizza = menuPizze.find(pizza => pizza.id === id);
+
+    // Piccolo controllo
+    if (!pizza) {
+        res.status(404);
+
+        return res.json({
+            error: "Not Found",
+            message: "Pizza non trovata"
+        })
+    }
+
+    // Aggiorniamo la pizza
+    req.body.name ? pizza.name = req.body.name : pizza.name = pizza.name;
+    req.body.image ? pizza.image = req.body.image : pizza.image = pizza.image;
+    req.body.ingredients ? pizza.ingredients = req.body.ingredients : pizza.ingredients = pizza.ingredients;
+
+
+    // Controlliamo il menu
+    console.log(menuPizze)
+
+    // Restituiamo la pizza appena aggiornata...
+    res.json(pizza);
 }
 
 function destroy(req, res) {
