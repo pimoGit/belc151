@@ -8,6 +8,9 @@ const pizzasRouter = require('./routers/pizzas');
 // attivazione della cartella public per uso file statici
 app.use(express.static('public'));
 
+// registro il body-parser per "application/json"...
+app.use(express.json());
+
 // rotta home APP
 app.get('/', (req, res) => {
     res.send("<h1>Rotta di home della nostra App della pizzeria</h1>")
