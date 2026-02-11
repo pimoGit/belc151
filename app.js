@@ -7,6 +7,8 @@ const port = 3000;
 
 // import del middelware di gestione errore interno 500
 const errorsHandler = require("./middlewares/errorsHandler");
+// import del middelware di gestione di rotta inesistente
+const notFound = require("./middlewares/notFound");
 
 // importa router delle pizze
 const pizzasRouter = require('./routers/pizzas');
@@ -33,6 +35,9 @@ app.use("/pizzas", pizzasRouter)
 
 // registriamo middelware di gestione err 500
 app.use(errorsHandler);
+
+// registriamo middelware di gestione rotta inesistente
+app.use(notFound);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
