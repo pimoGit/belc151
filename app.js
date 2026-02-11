@@ -5,6 +5,9 @@ const port = 3000;
 //  import del middleware checkTime
 // const checkTime = require('./middlewares/checkTime');
 
+// import del middelware di gestione errore interno 500
+const errorsHandler = require("./middlewares/errorsHandler");
+
 // importa router delle pizze
 const pizzasRouter = require('./routers/pizzas');
 
@@ -28,7 +31,8 @@ app.get('/', (req, res) => {
 // istanza delle rotte per risorsa pizze
 app.use("/pizzas", pizzasRouter)
 
-
+// registriamo middelware di gestione err 500
+app.use(errorsHandler);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
