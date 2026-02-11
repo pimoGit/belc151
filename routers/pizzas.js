@@ -3,6 +3,12 @@ const express = require('express')
 // creiamo un istanza dell'oggetto rotte di Express
 const router = express.Router();
 
+//  import del middleware checkTime
+const checkTime = require('./../middlewares/checkTime');
+
+// registrato per le rotte di questo router
+// router.use(checkTime);
+
 // import del controller della risorsa pizze
 const pizzaController = require('./../controllers/pizzaController');
 
@@ -11,7 +17,7 @@ const pizzaController = require('./../controllers/pizzaController');
 router.get('/', pizzaController.index);
 
 // show
-router.get('/:id', pizzaController.show);
+router.get('/:id', checkTime, pizzaController.show);
 
 // store
 router.post('/', pizzaController.store);
@@ -23,7 +29,7 @@ router.put('/:id', pizzaController.update);
 router.patch('/:id', pizzaController.modify);
 
 // destroy
-router.delete('/:id', pizzaController.destroy);
+router.delete('/:id', checkTime, pizzaController.destroy);
 
 // esporta l'istanza di queste rotte
 module.exports = router;
