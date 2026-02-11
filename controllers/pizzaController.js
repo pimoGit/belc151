@@ -27,7 +27,7 @@ function show(req, res) {
     const idNum = parseInt(req.params.id)
 
     // introduciamo un errore a caso per test middelware err 500
-    throw new Error("Errore di test middleware");
+    // throw new Error("Errore di test middleware");
 
     // cerchiamo il pizza tramite id
     const pizza = menuPizze.find(pizza => pizza.id === idNum);
