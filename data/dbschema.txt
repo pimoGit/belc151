@@ -2,18 +2,18 @@ Schema tabella per app di gestione prestiti libri di biblioteca
 
 nome tabella: BOOKS [copia fisica del libro presente in biblioteca]
 
-ID          -- BIGINT
-TITLE       -- VARCHAR(250)
-AUTHOR      -- VARCHAR(250)
-PUBLISHER   -- VARCHAR(100)
-YEAR        -- YEAR
-GENRE       -- VARCHAR(100)
-POSITION    -- CHAR(4)
-PAGES       -- SMALLINT
-ISBN        -- VARCHAR(17)
-COLOR       -- VARCHAR(20)
-LANGUAGE    -- CHAR(2)
-CONDITION   -- VARCHAR(100)
-PLOT        -- TEXT
-AGE_RANGE   -- VARCHAR(50)
-NOTE        -- TEXT
+ID          -- BIGINT           -- UNIQUE, AUTOINCREMENT, NOTNULL       - PRIMIRY KEY
+TITLE       -- VARCHAR(250)     -- NOTNULL
+AUTHOR      -- VARCHAR(250)     -- NOTNULL, DEFAULT("unknown")
+PUBLISHER   -- VARCHAR(100)     -- NOTNULL, DEFAULT("unknown")
+YEAR        -- YEAR             -- NOTNULL, DEFAULT("0000")
+GENRE       -- VARCHAR(100)     -- NOTNULL, DEFAULT("unknown")
+POSITION    -- CHAR(4)          -- NULL
+PAGES       -- SMALLINT         -- NOTNULL
+ISBN        -- VARCHAR(17)      -- NOTNULL
+COLOR       -- VARCHAR(20)      -- NULL
+LANGUAGE    -- CHAR(2)          -- NOTNULL, DEFAULT("it")
+CONDITION   -- VARCHAR(100)     -- NULL
+PLOT        -- TEXT             -- NULL
+AGE_RANGE   -- VARCHAR(50)      -- NULL
+NOTE        -- TEXT             -- NULL
