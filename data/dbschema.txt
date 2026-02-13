@@ -2,18 +2,18 @@ Schema tabella per app di gestione prestiti libri di biblioteca
 
 nome tabella: BOOKS [copia fisica del libro presente in biblioteca]
 
-ID
-TITLE
-AUTHOR
-PUBLISHER
-YEAR
-GENRE
-POSITION
-PAGES
-ISBN
-COLOR
-LANGUAGE
-CONDITION
-PLOT
-AGE_RANGE
-NOTE
+ID          -- BIGINT
+TITLE       -- VARCHAR(250)
+AUTHOR      -- VARCHAR(250)
+PUBLISHER   -- VARCHAR(100)
+YEAR        -- YEAR
+GENRE       -- VARCHAR(100)
+POSITION    -- CHAR(4)
+PAGES       -- SMALLINT
+ISBN        -- VARCHAR(17)
+COLOR       -- VARCHAR(20)
+LANGUAGE    -- CHAR(2)
+CONDITION   -- VARCHAR(100)
+PLOT        -- TEXT
+AGE_RANGE   -- VARCHAR(50)
+NOTE        -- TEXT
