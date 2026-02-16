@@ -2,7 +2,7 @@ Schema tabella per app di gestione prestiti libri di biblioteca
 
 nome tabella: BOOKS [copia fisica del libro presente in biblioteca]
 
-ID          -- BIGINT           -- UNIQUE, AUTOINCREMENT, NOTNULL       - PRIMIRY KEY
+ID          -- BIGINT           -- UNIQUE, AUTOINCREMENT, NOTNULL       - PRIMIRY KEY, INDEX
 TITLE       -- VARCHAR(250)     -- NOTNULL
 AUTHOR      -- VARCHAR(250)     -- NOTNULL, DEFAULT("unknown")
 PUBLISHER   -- VARCHAR(100)     -- NOTNULL, DEFAULT("unknown")
