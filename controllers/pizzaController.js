@@ -69,32 +69,21 @@ function store(req, res) {
 }
 
 function update(req, res) {
-    // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const id = parseInt(req.params.id)
+    // recuperiamo l'id dall' URL
+    const { id } = req.params;
 
-    // cerchiamo il pizza tramite id
-    const pizza = menuPizze.find(pizza => pizza.id === id);
+    // recuperiamo i dati dal body della richiesta
+    const { name, image } = req.body;
 
-    // Piccolo controllo
-    if (!pizza) {
-        res.status(404);
-
-        return res.json({
-            error: "Not Found",
-            message: "Pizza non trovata"
-        })
-    }
-
-    // Aggiorniamo la pizza
-    pizza.name = req.body.name;
-    pizza.image = req.body.image;
-    pizza.ingredients = req.body.ingredients;
-
-    // Controlliamo il menu
-    console.log(menuPizze)
-
-    // Restituiamo la pizza appena aggiornata...
-    res.json(pizza);
+    // Prepariamo la query per aggiornare la pizza
+    connection.query(
+        'UPDATE pizzas SET name = ?, image = ? WHERE id = ?',
+        [name, image, id],
+        (err) => {
+            if (err) return res.status(500).json({ error: 'Failed to update pizza' });
+            res.json({ message: 'Pizza updated successfully' });
+        }
+    );
 }
 
 // potenziale modifica parziale
