@@ -50,27 +50,22 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    const newId = Date.now();
+    //recuperiamo i dati dal corpo della richiesta
+    const { name, image } = req.body;
+    // prepariamo la query
+    const sql = 'INSERT INTO pizzas (name, image) VALUES (?, ?)'
 
-    // Creiamo un nuovo oggetto pizza
-    const newPizza = {
-        id: newId,
-        name: req.body.name,
-        image: req.body.image,
-        ingredients: req.body.ingredients,
-
-    }
-
-    // Aggiungiamo la nuova pizza al menu
-    menuPizze.push(newPizza);
-
-    // controlliamo
-    console.log(menuPizze);
-
-
-    // Restituiamo lo status corretto e la pizza appena creata
-    res.status(201);
-    res.json(newPizza);
+    // eseguiamo la query
+    connection.query(
+        sql,
+        [name, image],
+        (err, results) => {
+            if (err) return res.status(500).json({ error: 'Failed to insert pizza' });
+            res.status(201); // status corretto
+            console.log(results)
+            res.json({ id: results.insertId }); // restituiamo l'id assegnato dal DB
+        }
+    );
 }
 
 function update(req, res) {
