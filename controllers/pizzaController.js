@@ -1,25 +1,19 @@
+
+// Importiamo il file di connessione al database
+const connection = require('./../data/db');
+
 // import dei data della risorsa
 const menuPizze = require('./../data/menu');
 
 function index(req, res) {
-    //Inizialmente, il menu filtrato corrisponde a quello originale
-    let filteredMenu = menuPizze;
+    // prepariamo la query
+    const sql = 'SELECT * FROM pizzas';
 
-    // Se la richiesta contiene un filtro, allora filtriamo il menu
-    if (req.query.ingredient) {
-        filteredMenu = menuPizze.filter(
-            pizza => pizza.ingredients.includes(req.query.ingredient)
-        );
-    }
-
-    // creo un nuovo oggetto con le prop che mi servono
-    const oggettoMenu = {
-        numeroPizze: filteredMenu.length,
-        listaPizze: filteredMenu
-    };
-
-    // restituisco in risposta ql'oggetto creato
-    res.json(oggettoMenu);
+    // eseguiamo la query!
+    connection.query(sql, (err, results) => {
+        if (err) return res.status(500).json({ error: 'Database query failed' });
+        res.json(results);
+    });
 }
 
 function show(req, res) {
